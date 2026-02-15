@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 Amistad Bajo el Arcoíris ☀️</title>
+    <link href="https://fonts.googleapis.com/css2?family=Chewy&family=Patrick+Hand&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Patrick Hand', cursive;
+            background: 
+                radial-gradient(ellipse at top, #E0F7FF 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, #B3E5FC 0%, transparent 50%),
+                linear-gradient(180deg, #87CEEB 0%, #ADD8E6 30%, #E0F6FF 70%, #F0F8FF 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sol estilo caricatura en esquina superior izquierda */
+        .sun-container {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            width: 140px;
+            height: 140px;
+            z-index: 100;
+            animation: sunBob 3s ease-in-out infinite;
+        }
+
+        @keyframes sunBob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sun-body {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background: #FFD700;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 
+                0 0 0 4px #FFA500,
+                0 0 30px rgba(255, 215, 0, 0.6);
+            border: 3px solid #FF8C00;
+        }
+
+        /* Rayos de sol estilo caricatura */
+        .sun-rays {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: raysRotate 25s linear infinite;
+        }
+
+        @keyframes raysRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .ray {
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        /* Rayos triangulares estilo caricatura */
+        .ray::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 35px solid #FFD700;
+            transform: translateX(-50%);
+            filter: drop-shadow(0 0 3px #FFA500);
+        }
+
+        .ray:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg) translateY(-55px); }
+        .ray:nth-child(2) { transform: translate(-50%, -50%) rotate(45deg) translateY(-55px); }
+        .ray:nth-child(3) { transform: translate(-50%, -50%) rotate(90deg) translateY(-55px); }
+        .ray:nth-child(4) { transform: translate(-50%, -50%) rotate(135deg) translateY(-55px); }
+        .ray:nth-child(5) { transform: translate(-50%, -50%) rotate(180deg) translateY(-55px); }
+        .ray:nth-child(6) { transform: translate(-50%, -50%) rotate(225deg) translateY(-55px); }
+        .ray:nth-child(7) { transform: translate(-50%, -50%) rotate(270deg) translateY(-55px); }
+        .ray:nth-child(8) { transform: translate(-50%, -50%) rotate(315deg) translateY(-55px); }
+
+        /* Cara del sol estilo caricatura */
+        .sun-face {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sun-eyes {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 5px;
+        }
+
+        .sun-eye {
+            width: 12px;
+            height: 12px;
+            background: #333;
+            border-radius: 50%;
+            animation: blink 4s infinite;
+        }
+
+        @keyframes blink {
+            0%, 96%, 100% { transform: scaleY(1); }
+            98% { transform: scaleY(0.1); }
+        }
+
+        .sun-smile {
+            width: 35px;
+            height: 20px;
+            border: 3px solid #333;
+            border-top: none;
+            border-radius: 0 0 35px 35px;
+            margin-top: 5px;
+        }
+
+        .sun-cheeks {
+            position: absolute;
+            width: 15px;
+            height: 12px;
+            background: #FFB6C1;
+            border-radius: 50%;
+            top: 58%;
+            opacity: 0.7;
+        }
+
+        .sun-cheeks.left {
+            left: 15%;
+        }
+
+        .sun-cheeks.right {
+            right: 15%;
+        }
+
+        /* Arcoíris en forma de U invertida centrado */
+        .rainbow-wrapper {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 60px auto 40px;
+        }
+
+        .rainbow-container {
+            position: relative;
+            width: 600px;
+            height: 300px;
+        }
+
+        .rainbow-arches {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+        }
+
+        .arch {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            border-radius: 300px 300px 0 0;
+            border-style: solid;
+            border-width: 0;
+            border-top-width: 28px;
+            border-left-width: 28px;
+            border-right-width: 28px;
+            transform: translateX(-50%);
+            animation: archGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes archGlow {
+            0%, 100% {
+                filter: brightness(1) drop-shadow(0 0 8px currentColor);
+            }
+            50% {
+                filter: brightness(1.15) drop-shadow(0 0 15px currentColor);
+            }
+        }
+
+        .arch:nth-child(1) {
+            width: 600px;
+            height: 300px;
+            border-color: #FF0000;
+            color: #FF0000;
+        }
+
+        .arch:nth-child(2) {
+            width: 540px;
+            height: 270px;
+            border-color: #FF7F00;
+            color: #FF7F00;
+        }
+
+        .arch:nth-child(3) {
+            width: 480px;
+            height: 240px;
+            border-color: #FFFF00;
+            color: #FFFF00;
+        }
+
+        .arch:nth-child(4) {
+            width: 420px;
+            height: 210px;
+            border-color: #00FF00;
+            color: #00FF00;
+        }
+
+        .arch:nth-child(5) {
+            width: 360px;
+            height: 180px;
+            border-color: #0000FF;
+            color: #0000FF;
+        }
+
+        .arch:nth-child(6) {
+            width: 300px;
+            height: 150px;
+            border-color: #4B0082;
+            color: #4B0082;
+        }
+
+        .arch:nth-child(7) {
+            width: 240px;
+            height: 120px;
+            border-color: #9400D3;
+            color: #9400D3;
+        }
+
+        /* Nubes en los extremos del arcoíris */
+        .rainbow-cloud {
+            position: absolute;
+            bottom: 0;
+            width: 100px;
+            height: 60px;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .rainbow-cloud::before {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            top: -25px;
+            left: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .rainbow-cloud::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            top: -30px;
+            right: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .rainbow-cloud.left {
+            left: -30px;
+            animation: cloudBobLeft 3s ease-in-out infinite;
+        }
+
+        .rainbow-cloud.right {
+            right: -30px;
+            animation: cloudBobRight 3s ease-in-out infinite;
+        }
+
+        @keyframes cloudBobLeft {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-8px) translateX(-5px); }
+        }
+
+        @keyframes cloudBobRight {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-8px) translateX(5px); }
+        }
+
+        /* Frase en el arcoíris */
+        .rainbow-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            width: 85%;
+        }
+
+        .rainbow-text {
+            font-family: 'Chewy', cursive;
+            font-size: clamp(1.8em, 4.5vw, 3em);
+            background: linear-gradient(90deg, 
+                #FF0000 0%, 
+                #FF7F00 14%, 
+                #FFFF00 28%, 
+                #00FF00 42%, 
+                #0000FF 57%, 
+                #4B0082 71%, 
+                #9400D3 85%,
+                #FF0000 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowTextFlow 3s linear infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+            line-height: 1.3;
+        }
+
+        @keyframes rainbowTextFlow {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Tarjetas con forma de nube */
+        .clouds-grid {
+            max-width: 1500px;
+            margin: 40px auto;
+            padding: 0 30px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .cloud-card {
+            position: relative;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            animation: cloudFloat 6s ease-in-out infinite;
+            min-height: 200px;
+        }
+
+        @keyframes cloudFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .cloud-card:nth-child(odd) { animation-delay: 0s; }
+        .cloud-card:nth-child(even) { animation-delay: 1.5s; }
+
+        .cloud-card:hover {
+            transform: translateY(-20px) scale(1.05);
+        }
+
+        /* Cuerpo principal de la nube */
+        .cloud-shape {
+            position: relative;
+            background: white;
+            width: 100%;
+            height: 120px;
+            border-radius: 60px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Burbujas superiores de la nube */
+        .cloud-bubble {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .cloud-bubble.large {
+            width: 100px;
+            height: 100px;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .cloud-bubble.medium {
+            width: 70px;
+            height: 70px;
+            top: -35px;
+            left: 20%;
+        }
+
+        .cloud-bubble.small {
+            width: 60px;
+            height: 60px;
+            top: -25px;
+            right: 20%;
+        }
+
+        /* Colores para amigos */
+        .cloud-card.amigos .cloud-shape,
+        .cloud-card.amigos .cloud-bubble {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        }
+
+        .cloud-card.amigos .cloud-name {
+            color: #1565C0;
+        }
+
+        /* Colores para amigas */
+        .cloud-card.amigas .cloud-shape,
+        .cloud-card.amigas .cloud-bubble {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+        }
+
+        .cloud-card.amigas .cloud-name {
+            color: #AD1457;
+        }
+
+        /* Contenido de la nube */
+        .cloud-emoji {
+            font-size: 3em;
+            margin-bottom: 5px;
+            animation: emojiFloat 2.5s ease-in-out infinite;
+        }
+
+        @keyframes emojiFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.1); }
+        }
+
+        .cloud-name {
+            font-family: 'Chewy', cursive;
+            font-size: 1.5em;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            margin: 0;
+        }
+
+        /* Mensaje expandido */
+        .cloud-message-box {
+            position: relative;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.5s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .cloud-card.open .cloud-message-box {
+            padding: 25px;
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 20px;
+        }
+
+        .cloud-subtitle {
+            font-size: 1.1em;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .cloud-content {
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cloud-stat {
+            background: linear-gradient(135deg, #FFF9C4 0%, #FFE082 100%);
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .cloud-btn {
+            background: linear-gradient(135deg, #FF6B9D 0%, #FF1744 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 23, 68, 0.3);
+            display: block;
+            margin: 0 auto;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cloud-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(255, 23, 68, 0.5);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .main-title {
+            font-family: 'Chewy', cursive;
+            font-size: clamp(2.5em, 7vw, 4.5em);
+            color: #FF6B9D;
+            text-shadow: 
+                3px 3px 0 #FFB6C1,
+                6px 6px 0 rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            animation: titleFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes titleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #555;
+            font-weight: 600;
+        }
+
+        /* Indicación de click */
+        .click-indicator {
+            text-align: center;
+            font-size: 1.2em;
+            color: #777;
+            margin: 30px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-8px); }
+        }
+
+        /* Decoraciones adicionales */
+        .sky-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .small-cloud {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 3em;
+            animation: driftAcross 40s linear infinite;
+        }
+
+        @keyframes driftAcross {
+            from { transform: translateX(-100px); }
+            to { transform: translateX(calc(100vw + 100px)); }
+        }
+
+        .small-cloud:nth-child(1) { top: 20%; animation-duration: 50s; }
+        .small-cloud:nth-child(2) { top: 40%; animation-duration: 45s; animation-delay: 10s; }
+        .small-cloud:nth-child(3) { top: 60%; animation-duration: 55s; animation-delay: 20s; }
+        .small-cloud:nth-child(4) { top: 80%; animation-duration: 48s; animation-delay: 30s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sun-container {
+                top: 15px;
+                left: 15px;
+                width: 100px;
+                height: 100px;
+            }
+
+            .sun-body {
+                width: 65px;
+                height: 65px;
+            }
+
+            .ray::before {
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                border-bottom: 25px solid #FFD700;
+            }
+
+            .sun-eyes {
+                gap: 15px;
+            }
+
+            .sun-eye {
+                width: 10px;
+                height: 10px;
+            }
+
+            .sun-smile {
+                width: 28px;
+                height: 16px;
+            }
+
+            .rainbow-container {
+                width: 90%;
+                max-width: 400px;
+                height: 200px;
+            }
+
+            .arch:nth-child(1) { width: 400px; height: 200px; border-width: 22px; }
+            .arch:nth-child(2) { width: 350px; height: 175px; border-width: 22px; }
+            .arch:nth-child(3) { width: 300px; height: 150px; border-width: 22px; }
+            .arch:nth-child(4) { width: 250px; height: 125px; border-width: 22px; }
+            .arch:nth-child(5) { width: 200px; height: 100px; border-width: 22px; }
+            .arch:nth-child(6) { width: 150px; height: 75px; border-width: 22px; }
+            .arch:nth-child(7) { width: 100px; height: 50px; border-width: 22px; }
+
+            .rainbow-cloud {
+                width: 70px;
+                height: 40px;
+            }
+
+            .rainbow-cloud::before {
+                width: 35px;
+                height: 35px;
+                top: -18px;
+            }
+
+            .rainbow-cloud::after {
+                width: 40px;
+                height: 40px;
+                top: -20px;
+            }
+
+            .rainbow-wrapper {
+                height: 350px;
+            }
+
+            .clouds-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 0 20px 40px;
+            }
+
+            .cloud-shape {
+                height: 100px;
+            }
+
+            .cloud-emoji {
+                font-size: 2.5em;
+            }
+
+            .cloud-name {
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Decoraciones del cielo -->
+    <div class="sky-decoration">
+        <div class="small-cloud">☁️</div>
+        <div class="small-cloud">☁️</div>
+        <div class="small-cloud">☁️</div>
+        <div class="small-cloud">☁️</div>
+    </div>
+
+    <!-- Sol estilo caricatura -->
+    <div class="sun-container">
+        <div class="sun-rays">
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+            <div class="ray"></div>
+        </div>
+        <div class="sun-body"></div>
+        <div class="sun-face">
+            <div class="sun-eyes">
+                <div class="sun-eye"></div>
+                <div class="sun-eye"></div>
+            </div>
+            <div class="sun-smile"></div>
+            <div class="sun-cheeks left"></div>
+            <div class="sun-cheeks right"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1 class="main-title">💖 Palabras que nos unen 💖</h1>
+        <p class="subtitle">Unidos por la amistad bajo el arcoíris</p>
+    </div>
+
+    <!-- Arcoíris en forma de U invertida con nubes -->
+    <div class="rainbow-wrapper">
+        <div class="rainbow-container">
+            <div class="rainbow-arches">
+                <div class="arch"></div>
+                <div class="arch"></div>
+                <div class="arch"></div>
+                <div class="arch"></div>
+                <div class="arch"></div>
+                <div class="arch"></div>
+                <div class="arch"></div>
+            </div>
+            <div class="rainbow-cloud left"></div>
+            <div class="rainbow-cloud right"></div>
+            <div class="rainbow-message">
+                <div class="rainbow-text">La verdadera amistad<br>es un tesoro 🌟</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indicación -->
+    <div class="click-indicator">
+        👇 Haz click en cada nube para ver el mensaje 👇
+    </div>
+
+    <!-- Grid de nubes -->
+    <div class="clouds-grid">
+        <!-- CAMILA -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">👑</span>
+                <h2 class="cloud-name">CAMILA</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Una sonrisa que contagia</p>
+                <p class="cloud-content">
+                    Una sonrisa siempre, de esas que contagian, gracias por las historias y el tiempo en familia compartidas.
+                </p>
+                <div class="cloud-stat">👑 Vibra: sonrisa eterna</div>
+                <button class="cloud-btn" onclick="celebrate('Camila', event)">👑 Sonrisa!</button>
+            </div>
+        </div>
+
+        <!-- NEIL -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🎮</span>
+                <h2 class="cloud-name">NEIL</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">El amiguito “Epstein” 🤓</p>
+                <p class="cloud-content">
+                    Mi amigito “Epstein” 🤓, gracias por las historias contadas por las enseñanzas brindadas, se aprecia mucho.
+                </p>
+                <div class="cloud-stat">📚 Bonus: historias + enseñanzas</div>
+                <button class="cloud-btn" onclick="celebrate('Neil', event)">🤓 Gracias!</button>
+            </div>
+        </div>
+
+        <!-- RONALD -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">⚡</span>
+                <h2 class="cloud-name">RONALD</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Luz al final del túnel</p>
+                <p class="cloud-content">
+                    I love you bro, que nunca muera esa alma tan colaboradora y alegre a pesar de los problemas de la vida, recuerda que siempre hay una luz al final del túnel y después de la tormenta el sol brilla con mayor resplandor.
+                </p>
+                <div class="cloud-stat">☀️ Después de la tormenta, brillas más</div>
+                <button class="cloud-btn" onclick="celebrate('Ronald', event)">☀️ Resplandor!</button>
+            </div>
+        </div>
+
+        <!-- ELICEO -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🔥</span>
+                <h2 class="cloud-name">ELICEO</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">El líder que inspira</p>
+                <p class="cloud-content">
+                    Eliceo, eres un líder de verdad: cuando el ambiente se pone pesado, tú lo levantas con tu forma de ser. Tenerte cerca es tener respaldo. Se te aprecia full, mi líder. 💪
+                </p>
+                <div class="cloud-stat">🧭 Status: líder con respaldo</div>
+                <button class="cloud-btn" onclick="celebrate('Eliceo', event)">🧭 Líder!</button>
+            </div>
+        </div>
+
+        <!-- CHUBBY -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">😄</span>
+                <h2 class="cloud-name">CHUBBY</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">El maestro de la risa</p>
+                <p class="cloud-content">
+                    Chubby, contigo el mood siempre sube. Aunque todo esté medio feo, tú apareces y ya hay motivo pa’ reír. Nunca falte esa buena vibra. 🌟
+                </p>
+                <div class="cloud-stat">😄 Skill: levantar el ánimo</div>
+                <button class="cloud-btn" onclick="celebrate('Chubby', event)">😄 Mood!</button>
+            </div>
+        </div>
+
+        <!-- WILSON -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🎵</span>
+                <h2 class="cloud-name">WILSON</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Colegios vibes</p>
+                <p class="cloud-content">
+                    Amiguito, que lindos momentos vivimos en el colegio, amo poder enviarte tik toks re funables y que entiendas la pta vibra, ily bro.
+                </p>
+                <div class="cloud-stat">🎧 TikToks funables: aprobados</div>
+                <button class="cloud-btn" onclick="celebrate('Wilson', event)">🎧 Vibra!</button>
+            </div>
+        </div>
+
+        <!-- GENESIS -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">✨</span>
+                <h2 class="cloud-name">GENESIS</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Chisme premium</p>
+                <p class="cloud-content">
+                    Que lindo es el chisme contigo, tienes una risa contagiosa, eres seria pero a la vez alegre, un tanto bipolar, se te quiere amiguita.
+                </p>
+                <div class="cloud-stat">🫢 Chisme: nivel legendario</div>
+                <button class="cloud-btn" onclick="celebrate('Genesis', event)">🫢 Chisme!</button>
+            </div>
+        </div>
+
+        <!-- VIVI -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🌸</span>
+                <h2 class="cloud-name">VIVI</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Pocas charlas, buena vibra</p>
+                <p class="cloud-content">
+                    No hablamos mucho pero es genial siempre que lo hacemos, gracias por ese espíritu alegre.
+                </p>
+                <div class="cloud-stat">🌸 Vibe: tranquila y bonita</div>
+                <button class="cloud-btn" onclick="celebrate('Vivi', event)">🌸 Genial!</button>
+            </div>
+        </div>
+
+        <!-- NAHOMY -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">💖</span>
+                <h2 class="cloud-name">NAHOMY</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Extrovertida con modo volcán</p>
+                <p class="cloud-content">
+                    Naho, eres full extrovertida y a veces te enojas rapidito jajaja, pero lo que más vale es que estás puesta para cualquier salida. Con vos siempre hay plan, siempre hay risa y siempre hay historia. 💃🔥
+                </p>
+                <div class="cloud-stat">🚗 Always ready: cualquier salida</div>
+                <button class="cloud-btn" onclick="celebrate('Nahomy', event)">🚗 Plan!</button>
+            </div>
+        </div>
+
+        <!-- PAULA -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🌟</span>
+                <h2 class="cloud-name">PAULA</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Callada, pero cae brutal</p>
+                <p class="cloud-content">
+                    Paula, casi no hablamos mucho, pero caes demasiado bien. Tienes esa vibra tranquila y bacán… y encima le gustas a mi líder Eliceo, así que ya eres parte del lore jajaja. 🌟
+                </p>
+                <div class="cloud-stat">😌 Vibe: tranquila + top</div>
+                <button class="cloud-btn" onclick="celebrate('Paula', event)">🌟 Bacán!</button>
+            </div>
+        </div>
+
+        <!-- LILI -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🦋</span>
+                <h2 class="cloud-name">LILI</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Del bloqueo a la amistad</p>
+                <p class="cloud-content">
+                    Cuando me bloqueaste en Facebook pensé que nunca seríamos amigos, pues aquí estamos, tienes una sonrisa única, y un espíritu alegre y divertido, I love you 😘.
+                </p>
+                <div class="cloud-stat">🦋 Plot twist: amistad real</div>
+                <button class="cloud-btn" onclick="celebrate('Lili', event)">😘 Love!</button>
+            </div>
+        </div>
+
+        <!-- VALE -->
+        <div class="cloud-card amigas" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🔥</span>
+                <h2 class="cloud-name">VALE</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Carboncito quemado</p>
+                <p class="cloud-content">
+                    Carboncito quemado, el drama es tu definición, a pesar de que todo empezó con un tu me caías mal, siento que hoy te caigo excepcional, te quiero mucho.
+                </p>
+                <div class="cloud-stat">🔥 Drama: sí | Cariño: también</div>
+                <button class="cloud-btn" onclick="celebrate('Vale', event)">🔥 Excepcional!</button>
+            </div>
+        </div>
+
+        <!-- JAVI -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🧠</span>
+                <h2 class="cloud-name">JAVI</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">Mi líder del humor negro</p>
+                <p class="cloud-content">
+                    Mi líder, esos chistes amargos para otros para mí son lo máximo, que vacan compartir el mismo humor negro, y tener a alguien a quien acudir cuando hay problemas, no cambie lider.
+                </p>
+                <div class="cloud-stat">🖤 Humor negro: compatible</div>
+                <button class="cloud-btn" onclick="celebrate('Javi', event)">🖤 Líder!</button>
+            </div>
+        </div>
+
+        <!-- KEVIN -->
+        <div class="cloud-card amigos" onclick="toggleCloud(this)">
+            <div class="cloud-shape">
+                <div class="cloud-bubble large"></div>
+                <div class="cloud-bubble medium"></div>
+                <div class="cloud-bubble small"></div>
+                <span class="cloud-emoji">🕶️</span>
+                <h2 class="cloud-name">KEVIN</h2>
+            </div>
+            <div class="cloud-message-box">
+                <p class="cloud-subtitle">El espanta viejas 3000</p>
+                <p class="cloud-content">
+                    El espanta viejas 3 mil, sigue así Kevin, siendo tu, que nada te haga cambiar eso único que hace de ti una persona diferente.
+                </p>
+                <div class="cloud-stat">🕶️ Modo: único e irrepetible</div>
+                <button class="cloud-btn" onclick="celebrate('Kevin', event)">🕶️ Único!</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toggle nube abierta/cerrada
+        function toggleCloud(cloud) {
+            if (event.target.classList.contains('cloud-btn')) {
+                return;
+            }
+            cloud.classList.toggle('open');
+        }
+
+        // Celebración con efectos
+        function celebrate(name, event) {
+            event.stopPropagation();
+            
+            // Explosión de elementos
+            createExplosion(event.pageX, event.pageY);
+            
+            // Mensaje
+            showMessage(getCustomMessage(name));
+            
+            // Sonido
+            playSound();
+            
+            // Estrellas brillantes
+            createSparkles(event.pageX, event.pageY);
+        }
+
+        // Mensajes personalizados por persona (basados en el contenido)
+        function getCustomMessage(name) {
+            const messages = {
+                'Ronald': '¡Ronald, después de la tormenta brillas más! ☀️',
+                'Javi': '¡Javi, mi líder del humor negro! 🖤😈',
+                'Neil': '¡Neil “Epstein” 🤓 gracias por las historias y enseñanzas! 📚',
+                'Kevin': '¡Kevin, sigue siendo ese único e irrepetible! 🕶️',
+                'Wilson': '¡Wilson, esa pta vibra es intocable! 🎧🔥',
+                'Vale': '¡Vale, carboncito quemado… te caes excepcional! 🔥😏',
+                'Lili': '¡Lili, del bloqueo al cariño… I love you! 😘🦋',
+                'Camila': '¡Camila, tu sonrisa contagia todo! 👑😊',
+                'Vivi': '¡Vivi, pocas charlas pero siempre buena vibra! 🌸',
+                'Genesis': '¡Genesis, chisme contigo = diversión asegurada! 🫢✨',
+                'Nahomy': '¡Naho, lista pa’ cualquier salida! 🚗💖',
+                'Paula': '¡Paula, callada pero caes brutal! 🌟😌',
+                'Eliceo': '¡Eliceo, mi líder con respaldo siempre! 🧭🔥',
+                'Chubby': '¡Chubby, con vos el mood siempre sube! 😄🌟'
+            };
+            return messages[name] || `¡${name} eres increíble! 💖`;
+        }
+
+        // Explosión de emojis
+        function createExplosion(x, y) {
+            const emojis = ['💖', '💕', '⭐', '✨', '🌟', '💫', '🌈', '☀️', '🦋', '🌸'];
+            
+            for (let i = 0; i < 25; i++) {
+                const emoji = document.createElement('div');
+                emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                emoji.style.cssText = `
+                    position: fixed;
+                    left: ${x}px;
+                    top: ${y}px;
+                    font-size: ${Math.random() * 20 + 20}px;
+                    pointer-events: none;
+                    z-index: 10000;
+                `;
+                
+                document.body.appendChild(emoji);
+                
+                const angle = (Math.PI * 2 * i) / 25;
+                const velocity = Math.random() * 8 + 6;
+                const vx = Math.cos(angle) * velocity;
+                const vy = Math.sin(angle) * velocity;
+                
+                let posX = 0, posY = 0, opacity = 1, rotation = 0;
+                
+                const animate = () => {
+                    posX += vx;
+                    posY += vy + 0.5;
+                    opacity -= 0.02;
+                    rotation += 10;
+                    
+                    emoji.style.transform = `translate(${posX}px, ${posY}px) rotate(${rotation}deg)`;
+                    emoji.style.opacity = opacity;
+                    
+                    if (opacity > 0) {
+                        requestAnimationFrame(animate);
+                    } else {
+                        emoji.remove();
+                    }
+                };
+                
+                animate();
+            }
+        }
+
+        // Estrellas brillantes
+        function createSparkles(x, y) {
+            for (let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = '✨';
+                sparkle.style.cssText = `
+                    position: fixed;
+                    left: ${x + (Math.random() - 0.5) * 100}px;
+                    top: ${y + (Math.random() - 0.5) * 100}px;
+                    font-size: 1.5em;
+                    pointer-events: none;
+                    z-index: 10000;
+                    animation: sparkleAnim 2s ease-in-out;
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }
+
+        // Mensaje emergente
+        function showMessage(text) {
+            const msg = document.createElement('div');
+            msg.textContent = text;
+            msg.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) scale(0);
+                background: linear-gradient(135deg, #FF6B9D, #FF1744);
+                color: white;
+                padding: 30px 50px;
+                border-radius: 25px;
+                font-family: 'Chewy', cursive;
+                font-size: 2em;
+                z-index: 10002;
+                box-shadow: 0 20px 60px rgba(255, 23, 68, 0.6);
+                animation: msgPopIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            `;
+            
+            document.body.appendChild(msg);
+            
+            setTimeout(() => {
+                msg.style.animation = 'msgPopOut 0.3s ease forwards';
+                setTimeout(() => msg.remove(), 300);
+            }, 2000);
+        }
+
+        // Animaciones CSS adicionales
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes msgPopIn {
+                to { transform: translate(-50%, -50%) scale(1); }
+            }
+            @keyframes msgPopOut {
+                to { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+            }
+            @keyframes sparkleAnim {
+                0%, 100% {
+                    opacity: 0;
+                    transform: scale(0);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Sonido
+        function playSound() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.frequency.value = 800;
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
+            
+            osc.start(ctx.currentTime);
+            osc.stop(ctx.currentTime + 0.3);
+        }
+
+        // Crear estrellas aleatorias
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                const sparkle = document.createElement('div');
+                sparkle.textContent = '✨';
+                sparkle.style.cssText = `
+                    position: fixed;
+                    left: ${Math.random() * window.innerWidth}px;
+                    top: ${Math.random() * window.innerHeight}px;
+                    font-size: 1.5em;
+                    pointer-events: none;
+                    z-index: 2;
+                    animation: sparkleAnim 2s ease-in-out;
+                `;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
